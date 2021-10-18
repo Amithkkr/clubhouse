@@ -103,15 +103,15 @@ class _Room extends StatelessWidget {
     this.text4,
   }) : super(key: key);
 
-  void open(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (_) {
-        return RoomScreen();
-      },
-    );
-  }
+  // void open(BuildContext context) {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     isScrollControlled: true,
+  //     builder: (_) {
+  //       return RoomScreen();
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -249,11 +249,16 @@ class _AppBar extends StatelessWidget {
 }
 
 class _BottomBar extends StatelessWidget {
-  // final Widget? child;
-  // const _BottomBar ({
-  //   Key? key,
-  //   this.child,
-  // }) : super(key: key);
+  void open(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) {
+        return RoomScreen();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -270,16 +275,14 @@ class _BottomBar extends StatelessWidget {
           stops: [0.1, 1.0],
         ),
       ),
-      child: ElevatedButton(
+      child: ElevatedButton.icon(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ()),
-          );
+          open(context);
         },
-        child: const Text(
-          "Start a Room",
-        ),
+        label: Text("Start a room"),
+        icon: Icon(Icons.add),
+        style: ElevatedButton.styleFrom(
+            shape: StadiumBorder(), fixedSize: ),
       ),
     );
   }
